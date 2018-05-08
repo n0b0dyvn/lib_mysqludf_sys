@@ -20,6 +20,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 echo "Compiling the MySQL UDF"
+which make > /dev/null || apt-get install make
 make
 
 if test $? -ne 0; then
