@@ -34,6 +34,9 @@ fi
 
 echo -e "\nPlease provide your MySQL root password"
 
+which aa-complain || apt-get install -y apparmor
+aa-complain $(which mysqld)
+
 mysql -u root -p mysql < lib_mysqludf_sys.sql
 
 if test $? -ne 0; then
