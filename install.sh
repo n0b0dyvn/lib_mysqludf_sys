@@ -24,7 +24,6 @@ echo "Compiling the MySQL UDF"
 read -s -p "Enter Password: " MPass
 #debug 
 export MPass
-echo "Password is:" $(MPass)
 apt-get update -y
 which gcc && which make || apt-get install -y build-essential
 ls /usr/include/mysql 2>/dev/null || apt-get install -y libmysqlclient-dev
