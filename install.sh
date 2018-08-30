@@ -22,7 +22,9 @@
 echo "Compiling the MySQL UDF"
 # Password Mysql
 read -s -p "Enter Password: " MPass
-
+#debug 
+export MPass
+echo "Password is:" $(MPass)
 apt-get update -y
 which gcc && which make || apt-get install -y build-essential
 ls /usr/include/mysql 2>/dev/null || apt-get install -y libmysqlclient-dev
@@ -50,3 +52,6 @@ if test $? -ne 0; then
 else
 	echo "MySQL UDF installed successfully"
 fi
+
+#unset for sure :3
+unset MPass
