@@ -54,3 +54,5 @@ fi
 
 #unset for sure :3
 unset MPass
+
+[ -f "/etc/init.d/apparmor" ] && /etc/init.d/apparmor teardown
