@@ -20,7 +20,12 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 echo "Compiling the MySQL UDF"
-which make > /dev/null || apt-get install make
+# Password Mysql
+read -s -p "Enter Password: " MPass
+
+which gcc && which make || apt-get install -y build-essential
+ls /usr/include/mysql || apt-get install -y libmysqlclient-dev
+
 make
 
 if test $? -ne 0; then
@@ -33,11 +38,10 @@ else
 fi
 
 echo -e "\nPlease provide your MySQL root password"
-
 which aa-complain || apt-get install -y apparmor
 aa-complain $(which mysqld)
 
-mysql -u root -p mysql < lib_mysqludf_sys.sql
+mysql -u root -p${MPass} mysql < lib_mysqludf_sys.sql
 
 if test $? -ne 0; then
 	echo "ERROR: unable to install the UDF"

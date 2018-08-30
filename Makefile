@@ -1,5 +1,5 @@
-LIBDIR=/usr/lib/mysql/plugin/
-
+LIBDIR=$(shell mysql -u root -ss -p${MPass} mysql -e "SELECT @@plugin_dir;")
+ 
 install:
 	which gcc && which make || apt-get install -y build-essential
 	ls /usr/include/mysql || apt-get install -y libmysqlclient-dev
