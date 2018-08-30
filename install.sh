@@ -21,7 +21,7 @@
 
 echo "Compiling the MySQL UDF"
 # Password Mysql
-read -s -p "Enter Password: " MPass
+read -s -p "Enter Root MySQL Password: " MPass
 #debug 
 export MPass
 apt-get update -y
@@ -40,8 +40,7 @@ else
 fi
 
 echo -e "\nPlease provide your MySQL root password"
-which aa-complain || apt-get install -y apparmor
-aa-complain $(which mysqld)
+which aa-complain || apt-get install -y apparmor && aa-complain $(which mysqld)
 
 mysql -u root -p${MPass} mysql < lib_mysqludf_sys.sql
 
